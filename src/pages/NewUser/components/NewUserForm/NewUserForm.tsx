@@ -58,7 +58,14 @@ const NewUserForm = () => {
             id="cpf"
             placeholder="CPF"
             label="CPF"
-            onChange={onChange}
+            maxLength={14}
+            onChange={(e) => {
+              e.target.value = e.target.value.replace(
+                /(\d{3})(\d{3})(\d{3})(\d{2})/,
+                "$1.$2.$3-$4"
+              );
+              onChange(e);
+            }}
             error={errors.cpf?.message}
             value={value}
           />
