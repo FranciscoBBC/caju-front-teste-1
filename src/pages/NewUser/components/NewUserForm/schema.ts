@@ -4,8 +4,8 @@ const requiredString = (fieldName: string): ZodString =>
   z.string({ required_error: `O campo ${fieldName} é obrigatório.` });
 
 export const createUserFormSchema = z.object({
-  name: requiredString("Nome").refine(
-    (value) => /^[a-zA-Z\s]*$/.test(value.trim() ?? ""),
+  name: requiredString("Nome").regex(
+    /^[a-zA-Z]+\s[a-zA-Z]+$/,
     "Digite um nome válido"
   ),
   email: requiredString("E-mail").refine(
