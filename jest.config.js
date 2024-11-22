@@ -1,6 +1,14 @@
 /** @type {import('jest').Config} */
 export default {
   verbose: true,
+  clearMocks: true,
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "<rootDir>/src/**",
+    "!**/node_modules/**",
+    "!<rootDir>/coverage/**",
+  ],
+  coverageDirectory: "coverage",
   preset: "ts-jest",
   testEnvironment: "jsdom",
   transform: {
@@ -8,7 +16,7 @@ export default {
     "^.+\\.(js|jsx)$": "babel-jest",
   },
   moduleNameMapper: {
-    "^~/(.+)": "<rootDir>/src/$1",
+    "^~/(.+)$": "<rootDir>/src/$1",
   },
-//   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
